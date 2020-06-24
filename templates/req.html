@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Request - Form{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid col-md-10 mt-5">
+
+<form action="{{ url_for('form') }}" method="GET"> 
+<div class="form-group row">
+ <label class="col-sm-2 col-form-label">Number of Lump Sum</label>
+ <div class="col-sm-3"><input class="form-control" type="number" name="numberLumpSum" min="0" max="10" value="0" required></div>
+  <div class="col-sm-2"><input class="btn btn btn-primary" type="submit" value="Add"></div>
+</div>
+</form>
+<br>
+<form method="POST" action="" novalidate>
+    {{ reqForm.csrf_token }}  
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{reqForm.fundCode.label}}</label>
+    <div class="col-sm-4">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text form-control" id="basic-addon3">AMFI/</span>
+            {{reqForm.fundCode(class="form-control")}}
+            </div>
+            </div></div>
+
+    {% for error in reqForm.fundCode.errors %}
+                <div class="alert alert-danger col-sm-2 col-form-label" role="alert">
+                {{error}}
+                </div>
+            {% endfor %}
+  </div>
+
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{reqForm.startDate.label}}</label>
+    <div class="col-sm-3">{{reqForm.startDate(class="form-control")}}</div>
+            {% for error in reqForm.startDate.errors %}
+            <div class="alert alert-danger col-sm-2 col-form-label" role="alert">
+                {{error}}
+                </div>
+            {% endfor %}
+
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{reqForm.endDate.label}}</label>
+    <div class="col-sm-3">{{reqForm.endDate(class="form-control")}}</div>
+            {% for error in reqForm.endDate.errors %}
+            <div class="alert alert-danger col-sm-2 col-form-label" role="alert">
+                {{error}}
+                </div>
+            {% endfor %}
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{reqForm.sipAmount.label}}</label>
+    <div class="col-sm-3">{{reqForm.sipAmount(class="form-control")}} 
+    <small class="form-text text-muted">Amount in Rs.</small></div>
+
+            {% for error in reqForm.sipAmount.errors %}
+            <div class="alert alert-danger col-sm-2 col-form-label" role="alert">
+                {{error}}
+                </div>
+            {% endfor %}
+    </div>
+    <br>
+
+    {% if numLumpSum %}
+    <h3> Number of Lump Sums : {{numLumpSum}} </h3>
+    {% endif %}
+    <br>
+
+    {% if numLumpSum > 0 and reqForm.lumpSums.data.__len__() == 0 %}
+    {% for i in range(numLumpSum) %}
+    {% do reqForm.lumpSums.append_entry() %}
+    {% endfor %}
+    {% endif %}
+
+
+    {% if reqForm.lumpSums.data %}
+    {% for lumpSum in reqForm.lumpSums %}
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label">{{lumpSum.lumpSumDate.label}}</label>
+         <div class="col-sm-2">{{lumpSum.lumpSumDate(class="form-control")}}</div>
+        <label class="col-sm-2 col-form-label">{{lumpSum.lumpSumAmount.label}}</label>
+         <div class="col-sm-2">{{lumpSum.lumpSumAmount(class="form-control")}}
+         <small class="form-text text-muted">Amount in Rs.</small></div>
+        </div>
+
+
+        <div class="form-group row">
+            {% for error in lumpSum.lumpSumDate.errors %}
+                 <div class="alert alert-danger col-sm-2 col-form-label offset-md-2" role="alert">
+                    {{error}}
+                    </div>
+                {% endfor %}
+
+                {% for error in lumpSum.lumpSumAmount.errors %}
+                <div class="alert alert-danger col-sm-2 col-form-label offset-md-2" role="alert">
+                    {{error}}
+                    </div>
+                {% endfor %}
+
+        </div>
+         
+
+    {% endfor %} 
+
+    {% endif %}
+
+
+    {{reqForm.submit(class="btn btn-primary")}}
+
+
+</form>
+</div>
+
+
+{% endblock %}
