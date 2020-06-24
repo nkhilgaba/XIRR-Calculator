@@ -8,21 +8,21 @@ This Flask app helps you calculate XIRR based on your Mutual-Funds(India) invest
 
 - Create a python virtual environment
 
-<code>python3 -m venv venv</code>
+  ```python3 -m venv venv```
 
 - Activate the virtual environment
 
-<code>source venv/bin/activate</code>
+  ```source venv/bin/activate```
 
 - Install the dependencies using the requirements file
 
-<code>pip install -r req.txt</code>
+  ```pip install -r req.txt```
 
 - Get a Quandl API Key [here](https://docs.quandl.com/docs/python-installation) and add it to the *app.py* file
 
 - Run the Flask server
 
-<code>python app.py</code>
+  ```python app.py```
 
 ## Demo
 
