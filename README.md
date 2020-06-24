@@ -6,17 +6,23 @@ This Flask app helps you calculate XIRR based on your Mutual-Funds(India) invest
 
 ### Prerequisites and Running
 
-Create a python virtual environment
+- Create a python virtual environment
 
 <code>python3 -m venv venv</code>
 
-Activate the virtual environment
+- Activate the virtual environment
 
 <code>source venv/bin/activate</code>
 
-Install the dependencies using the requirements file
+- Install the dependencies using the requirements file
 
 <code>pip install -r req.txt</code>
+
+- Get a Quandl API Key [here](https://docs.quandl.com/docs/python-installation) and add it to the *app.py* file
+
+- Run the Flask server
+
+<code>python app.py</code>
 
 ## Demo
 
@@ -25,10 +31,9 @@ Install the dependencies using the requirements file
 
 ## Built With
 
-* [Flask](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [NumPy](https://maven.apache.org/) - Dependency Management
-* [Pandas](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-* [Quandl](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Flask](https://github.com/pallets/flask) - A lightweight WSGI web application framework.
+* [Pandas](https://github.com/pandas-dev/pandas) - Python package that provides real world data analysis
+* [Quandl](https://docs.quandl.com/) - Used to get data of Association of Mutual Funds in India
 
 ## License
 
@@ -36,6 +41,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* [XIRR and XNPV](https://github.com/peliot/XIRR-and-XNPV)
+
