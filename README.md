@@ -20,7 +20,8 @@ Install the dependencies using the requirements file
 
 ## Demo
 
-
+![homepage](/screenshots/form.png)
+![result](/screenshots/result.png)
 
 ## Built With
 
